@@ -9,6 +9,7 @@ import {
   Image,
   Text,
 } from 'react-native';
+import Card from './Card';
 
 export default ({ posts }) => {
   if (posts.data.length === 0) {
@@ -18,17 +19,17 @@ export default ({ posts }) => {
   return (
     <ScrollView>
       {posts.data.map(post => (
-        <View key={post.id}>
-          {post.thumbnail && 
-            <Image
-              style={{width: post.thumbnail.width, height: post.thumbnail.height}}
-              source={{uri: post.thumbnail.url}}
-            /> 
-          }
-          <Text>{post.title}</Text>
-          <Text>by {post.author}</Text>
-        </View>        
+        <Card key={post.id} post={post} />        
       ))}
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'space-around',
+  }
+});

@@ -20,7 +20,7 @@ class Search extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={{height: 40}}
+          style={styles.search}
           placeholder="search subreddit"
           onChangeText={(text) => this.setState({ search: text })}
         />
@@ -41,4 +41,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
   },
+  search: {
+    height: 40,
+  }
 });

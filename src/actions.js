@@ -4,18 +4,22 @@ import {
     FETCH_ALL_FAILURE, 
 } from './actionTypes';
 
-export const fetchAllPosts = (subreddit) => (
+export const fetchAllPosts = (subreddit = null) => (
     dispatch => {
-
-        console.log('fetch all posts');
-
         // set state as pending
         dispatch({
             type: FETCH_ALL_PENDING,
         });
 
         // fetch all posts
-        return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+        let url = 'https://www.reddit.com';
+        if (subreddit) {
+            url += `/r/${subreddit}.json`;
+        } else {
+            url += `/hot.json`;
+        }
+
+        return fetch(url)
             .then(response => response.json())
             .then(json => dispatch({
                 type: FETCH_ALL_SUCCESS,
