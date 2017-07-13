@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Search from './components/Search';
@@ -21,16 +22,21 @@ class App extends Component {
   }
 
   renderList() {
-    if (this.props.posts.isFetching) {
-      return <Text>loading...</Text>;
+    if (this.props.posts.loading) {
+      return null;
     }
     return <List posts={this.props.posts}/>;
   }
 
   render() {
     return (
-      <View>
+      <View style={styles.mainContainer}>
         <Search/>
+        {this.props.posts.loading && (
+          <ActivityIndicator 
+            size="large"
+          />
+        )}
         {this.renderList()}
       </View>
     );
@@ -47,5 +53,8 @@ export default connect(
 )(App);
 
 const styles = StyleSheet.create({
-  
+  mainContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  }
 });

@@ -7,7 +7,7 @@ import {
 const defaultState = {
   list: {
     data: [],
-    isFetching: false,   
+    loading: false,   
   },
   currentId: null,
 };
@@ -19,7 +19,7 @@ export default (state = defaultState, action) => {
         ...state,
         list: {
           ...state.list,
-          isFetching: true,
+          loading: true,
         }
       };
     case FETCH_ALL_SUCCESS:
@@ -36,7 +36,7 @@ export default (state = defaultState, action) => {
               width: post.thumbnail_width,
             } : null,
           })),
-          isFetching: false,
+          loading: false,
         }
       };
     default:

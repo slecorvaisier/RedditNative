@@ -25,6 +25,7 @@ class Search extends Component {
           onChangeText={(text) => this.setState({ search: text })}
         />
         <Button
+          style={styles.searchBtn}
           onPress={() => this.props.fetchAllPosts(this.state.search)}
           title="Search"
           color="#841584"
@@ -39,9 +40,12 @@ export default connect(null, { fetchAllPosts })(Search);
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    padding: 8,
   },
   search: {
     height: 40,
-  }
+  },
+  searchBtn: {
+  
+  },
 });

@@ -17,7 +17,7 @@ export default ({ posts }) => {
   }
   
   return (
-    <ScrollView>
+    <ScrollView stye={styles.wrapper}>
       {posts.data.map(post => (
         <Card key={post.id} post={post} />        
       ))}
